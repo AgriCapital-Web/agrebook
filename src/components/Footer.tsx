@@ -68,13 +68,13 @@ const Footer = () => {
         <p className="text-center text-xs text-primary-foreground/50">
           © {new Date().getFullYear()} AGREBOOK CI — Tous droits réservés. Toute contrefaçon fera l'objet d'une poursuite judiciaire.
         </p>
-        <div className="flex items-center justify-center gap-2 text-xs text-primary-foreground/40">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-primary-foreground/40">
           <img
             src="/images/inocent-koffi.jpg"
             alt="Inocent KOFFI"
             className="h-7 w-7 rounded-full object-cover border border-white/20"
           />
-          <span>
+          <span className="text-center">
             Plateforme développée par{" "}
             <a
               href="https://ikoffi.agricapital.ci"
