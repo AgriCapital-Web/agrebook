@@ -77,7 +77,7 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-gold text-accent-foreground px-8 py-4 rounded-lg font-semibold text-base hover:opacity-90 transition-opacity"
             >
-              Je paie ma carte
+              Demander ma carte
               <ArrowRight size={18} />
             </a>
             <a

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Phone, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -12,6 +12,29 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.classList.contains("dark");
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+      setIsDark(true);
+    }
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
@@ -45,13 +68,20 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className="p-2 rounded-lg text-foreground/70 hover:text-primary hover:bg-muted transition-colors"
+              aria-label="Basculer le thème"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <a
               href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
             >
-              Je paie ma carte
+              Demander ma carte
             </a>
           </div>
 
@@ -86,14 +116,23 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold text-center"
-              >
-                Je paie ma carte
-              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold text-center flex-1"
+                >
+                  Demander ma carte
+                </a>
+                <button
+                  onClick={() => setIsDark(!isDark)}
+                  className="p-3 rounded-lg text-foreground/70 hover:text-primary hover:bg-muted transition-colors border border-border"
+                  aria-label="Basculer le thème"
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+              </div>
               <div className="flex items-center gap-2 text-muted-foreground text-sm pt-2">
                 <Phone size={14} />
                 <span>01.41.14.41.50 / 07.13.24.03.69</span>
