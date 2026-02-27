@@ -1,20 +1,35 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Shield, Award } from "lucide-react";
+import { useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
     <section
+      ref={ref}
       id="accueil"
-      className="relative min-h-screen flex items-center pt-20"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover" />
+      {/* Parallax Background */}
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img src={heroBg} alt="" className="w-full h-[120%] object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-      </div>
+      </motion.div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <motion.div
+        style={{ y: textY, opacity }}
+        className="container mx-auto px-4 lg:px-8 relative z-10"
+      >
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,7 +105,7 @@ const HeroSection = () => {
             </span>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
