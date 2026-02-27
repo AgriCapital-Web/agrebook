@@ -64,10 +64,37 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6">
+      <div className="border-t border-white/10 py-6 space-y-3">
         <p className="text-center text-xs text-primary-foreground/50">
           © {new Date().getFullYear()} AGREBOOK CI — Tous droits réservés. Toute contrefaçon fera l'objet d'une poursuite judiciaire.
         </p>
+        <div className="flex items-center justify-center gap-2 text-xs text-primary-foreground/40">
+          <img
+            src="/images/inocent-koffi.jpg"
+            alt="Inocent KOFFI"
+            className="h-7 w-7 rounded-full object-cover border border-white/20"
+          />
+          <span>
+            Plateforme développée par{" "}
+            <a
+              href="https://ikoffi.agricapital.ci"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary-foreground/70 transition-colors"
+            >
+              Inocent KOFFI
+            </a>
+            {" - "}
+            <a
+              href="https://wa.me/2250759566087"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary-foreground/70 transition-colors"
+            >
+              +2250759566087
+            </a>
+          </span>
+        </div>
       </div>
     </footer>
   );
