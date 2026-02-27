@@ -6,6 +6,7 @@ const navLinks = [
   { label: "Accueil", href: "#accueil" },
   { label: "Services", href: "#services" },
   { label: "À Propos", href: "#apropos" },
+  { label: "Équipe", href: "#equipe" },
   { label: "Témoignages", href: "#temoignages" },
   { label: "Contact", href: "#contact" },
 ];
@@ -76,9 +77,7 @@ const Navbar = () => {
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <a
-              href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/services"
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Demander ma carte
@@ -118,9 +117,8 @@ const Navbar = () => {
               ))}
               <div className="flex items-center gap-3">
                 <a
-                  href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/services"
+                  onClick={() => setIsOpen(false)}
                   className="block bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold text-center flex-1"
                 >
                   Demander ma carte

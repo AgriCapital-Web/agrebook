@@ -72,9 +72,7 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <a
-              href="https://app.jotform.com/agrebook-ci/service-agrebook-ci"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/services"
               className="inline-flex items-center justify-center gap-2 bg-gold text-accent-foreground px-8 py-4 rounded-lg font-semibold text-base hover:opacity-90 transition-opacity"
             >
               Demander ma carte
