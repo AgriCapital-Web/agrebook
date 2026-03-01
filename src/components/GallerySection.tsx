@@ -11,6 +11,15 @@ const galleryImages = [
   { src: "/images/gallery/parc-salonga.jpg", alt: "Parc national de la Salonga" },
   { src: "/images/gallery/virunga.jpg", alt: "Parc national des Virunga" },
   { src: "/images/gallery/afrique.jpg", alt: "Paysage africain" },
+  { src: "/images/gallery/afrique-continent.jpg", alt: "Continent africain" },
+  { src: "/images/gallery/journee-afrique.png", alt: "Journée mondiale de l'Afrique" },
+  { src: "/images/gallery/culture-africaine.jpg", alt: "Culture africaine" },
+  { src: "/images/gallery/art-africain-1.jpg", alt: "Art africain" },
+  { src: "/images/gallery/entreprises-afrique.jpg", alt: "Entreprises en Afrique" },
+  { src: "/images/gallery/maggi-maquette.jpg", alt: "Maquette publicitaire" },
+  { src: "/images/gallery/maggi-pub.jpg", alt: "Publicité africaine" },
+  { src: "/images/gallery/art-traditionnel.jpg", alt: "Art traditionnel africain" },
+  { src: "/images/gallery/gwd-news.jpg", alt: "Actualités culturelles" },
 ];
 
 const GallerySection = () => {
@@ -45,7 +54,7 @@ const GallerySection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="aspect-square rounded-xl overflow-hidden cursor-pointer group"
                 onClick={() => setSelectedImage(img.src)}
               >

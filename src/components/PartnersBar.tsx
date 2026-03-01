@@ -1,8 +1,8 @@
 const partners = [
-  { src: "/images/cepici.webp", alt: "CEPICI", url: "https://www.cepici.gouv.ci/" },
-  { src: "/images/ministere-commerce.png", alt: "Ministère du Commerce", url: "https://www.gouv.ci/_actualite-article.php?recordID=14210" },
-  { src: "/images/cenam.jpeg", alt: "CENAM", url: "https://www.commerce.gouv.ci/carte-professionnelle-dartisan/" },
-  { src: "/images/ministere-numerique.png", alt: "Ministère du Numérique", url: "https://telecom.gouv.ci/new/index.php/accueil" },
+  { src: "/images/cepici.webp", alt: "CEPICI - Centre de Promotion des Investissements", url: "https://www.cepici.gouv.ci/" },
+  { src: "/images/ministere-commerce.png", alt: "Ministère de la Communication et de l'Économie Numérique", url: "https://www.gouv.ci/_actualite-article.php?recordID=14210" },
+  { src: "/images/cenam.jpeg", alt: "CNMCI - Chambre Nationale de Métiers de Côte d'Ivoire", url: "https://www.commerce.gouv.ci/carte-professionnelle-dartisan/" },
+  { src: "/images/ministere-numerique.png", alt: "Ministère de la Transition Numérique et de la Digitalisation", url: "https://telecom.gouv.ci/new/index.php/accueil" },
   { src: "/images/pme.png", alt: "Ministère des PME", url: "https://pme.gouv.ci/views/cnmci/" },
   { src: "/images/la-poste.jpeg", alt: "La Poste CI", url: "https://www.documents.ci/UserRegister" },
 ];
