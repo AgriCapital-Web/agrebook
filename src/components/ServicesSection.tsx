@@ -42,7 +42,7 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -52,18 +52,20 @@ const ServicesSection = () => {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-lg transition-shadow group"
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-48 sm:h-44 lg:h-48 overflow-hidden">
                 <img
                   src={service.image}
                   alt={service.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <service.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                <h3 className="font-display text-lg lg:text-xl font-bold text-foreground mb-3">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">

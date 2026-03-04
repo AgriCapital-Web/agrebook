@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/gallery/art-sculpture.jpg", alt: "Sculpture africaine" },
@@ -23,7 +23,12 @@ const galleryImages = [
 ];
 
 const GallerySection = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const navigate = useCallback((dir: 1 | -1) => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex + dir + galleryImages.length) % galleryImages.length);
+  }, [selectedIndex]);
 
   return (
     <>
@@ -47,50 +52,70 @@ const GallerySection = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={img.src}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="aspect-square rounded-xl overflow-hidden cursor-pointer group"
-                onClick={() => setSelectedImage(img.src)}
+                transition={{ duration: 0.4, delay: i * 0.03 }}
+                className="aspect-square rounded-xl overflow-hidden cursor-pointer group relative"
+                onClick={() => setSelectedIndex(i)}
               >
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
-      {selectedImage && (
+      {/* Lightbox with navigation */}
+      {selectedIndex !== null && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
           <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-white/80 hover:text-white"
+            onClick={() => setSelectedIndex(null)}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-white z-10"
             aria-label="Fermer"
           >
             <X size={32} />
           </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            aria-label="Précédent"
+          >
+            <ChevronLeft size={36} />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); navigate(1); }}
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            aria-label="Suivant"
+          >
+            <ChevronRight size={36} />
+          </button>
           <img
-            src={selectedImage}
-            alt="Galerie"
+            src={galleryImages[selectedIndex].src}
+            alt={galleryImages[selectedIndex].alt}
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
           />
+          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+            {selectedIndex + 1} / {galleryImages.length}
+          </p>
         </motion.div>
       )}
     </>

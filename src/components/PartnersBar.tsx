@@ -14,19 +14,21 @@ const PartnersBar = () => {
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-8">
           Nos partenaires institutionnels
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10">
           {partners.map((p) => (
             <a
               key={p.alt}
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-all duration-300"
+              className="hover:opacity-80 transition-all duration-300"
             >
               <img
                 src={p.src}
                 alt={p.alt}
-                className="h-12 lg:h-16 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+                className="h-10 sm:h-12 lg:h-16 w-auto object-contain"
               />
             </a>
           ))}
