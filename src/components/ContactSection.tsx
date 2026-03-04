@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Youtube } from "lucide-react";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,20 +12,24 @@ const ContactSection = () => {
     source: "",
     details: "",
   });
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
     const subject = encodeURIComponent("Demande de contact - AGREBOOK CI");
     const body = encodeURIComponent(
       `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nSource: ${formData.source}\nDétails: ${formData.details}`
     );
     window.open(`mailto:agrebook@gmail.com?subject=${subject}&body=${body}`);
+    toast({ title: "Redirection vers votre messagerie", description: "Envoyez le message pré-rempli." });
+    setSending(false);
   };
 
   return (
     <section id="contact" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -104,7 +110,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card rounded-2xl p-8 border border-border shadow-sm space-y-5"
+            className="bg-card rounded-2xl p-6 sm:p-8 border border-border shadow-sm space-y-5"
           >
             <div>
               <label className="text-sm font-medium text-foreground block mb-1.5">
@@ -179,7 +185,8 @@ const ContactSection = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-primary text-primary-foreground py-3.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
+              disabled={sending}
+              className="w-full bg-primary text-primary-foreground py-3.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               Envoyer le message
             </button>

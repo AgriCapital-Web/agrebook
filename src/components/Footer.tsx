@@ -3,8 +3,8 @@ import { Phone, Mail, MapPin } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 lg:px-8 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="container mx-auto px-4 lg:px-8 py-10 lg:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -12,6 +12,7 @@ const Footer = () => {
                 src="/images/agrebook-logo.jpg"
                 alt="AGREBOOK CI"
                 className="h-10 w-10 rounded-lg object-cover"
+                loading="lazy"
               />
               <span className="font-display text-lg font-bold">AGREBOOK CI</span>
             </div>
@@ -49,15 +50,15 @@ const Footer = () => {
             <h4 className="font-display font-bold mb-4">Contact</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li className="flex items-center gap-2">
-                <Phone size={14} />
+                <Phone size={14} className="shrink-0" />
                 <span>01.41.14.41.50</span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={14} />
+                <Mail size={14} className="shrink-0" />
                 <span>agrebook@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={14} />
+                <MapPin size={14} className="shrink-0" />
                 <span>Abidjan, Côte d'Ivoire</span>
               </li>
             </ul>
@@ -65,14 +66,15 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-white/10 py-6 space-y-3">
-        <p className="text-center text-xs text-primary-foreground/50">
+        <p className="text-center text-xs text-primary-foreground/50 px-4">
           © {new Date().getFullYear()} AGREBOOK CI — Tous droits réservés. Toute contrefaçon fera l'objet d'une poursuite judiciaire.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-primary-foreground/40">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-primary-foreground/40 px-4">
           <img
             src="/images/inocent-koffi.jpg"
             alt="Inocent KOFFI"
             className="h-7 w-7 rounded-full object-cover border border-white/20"
+            loading="lazy"
           />
           <span className="text-center">
             Plateforme développée par{" "}

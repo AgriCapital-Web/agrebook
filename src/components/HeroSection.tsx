@@ -18,11 +18,16 @@ const HeroSection = () => {
     <section
       ref={ref}
       id="accueil"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center pt-20 overflow-hidden"
     >
       {/* Parallax Background */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <img src={heroBg} alt="" className="w-full h-[120%] object-cover" />
+        <img
+          src={heroBg}
+          alt=""
+          className="w-full h-[120%] object-cover"
+          fetchPriority="high"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
       </motion.div>
 
@@ -47,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
           >
             <span className="text-white">Obtenez votre </span>
             <span className="text-gradient-gold">carte de travail</span>
@@ -58,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg sm:text-xl text-white/75 mb-8 max-w-2xl leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-white/75 mb-8 max-w-2xl leading-relaxed"
           >
             AGREBOOK CI — Agence de Gestion Régionale des Entreprises, votre
             partenaire incontournable pour la croissance des entreprises et
@@ -69,18 +74,18 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <a
               href="/services"
-              className="inline-flex items-center justify-center gap-2 bg-gold text-accent-foreground px-8 py-4 rounded-lg font-semibold text-base hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-2 bg-gold text-accent-foreground px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:opacity-90 transition-opacity"
             >
               Demander ma carte
               <ArrowRight size={18} />
             </a>
             <a
               href="#services"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-lg font-semibold text-base hover:bg-white/20 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/20 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:bg-white/20 transition-colors"
             >
               Nos services
             </a>
@@ -91,14 +96,14 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex items-center gap-6 mt-12 pt-8 border-t border-white/10"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10"
           >
             <div className="flex items-center gap-2">
               <Award size={20} className="text-gold" />
-              <span className="text-white/70 text-sm">RCCM: CI-ABJ-03-2024-B13-11409</span>
+              <span className="text-white/70 text-xs sm:text-sm">RCCM: CI-ABJ-03-2024-B13-11409</span>
             </div>
             <div className="hidden sm:block h-4 w-px bg-white/20" />
-            <span className="hidden sm:block text-white/70 text-sm">
+            <span className="text-white/70 text-xs sm:text-sm">
               Capital: 1.000.000 FCFA
             </span>
           </motion.div>
