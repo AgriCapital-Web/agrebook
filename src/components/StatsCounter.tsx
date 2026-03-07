@@ -30,7 +30,7 @@ const AnimatedNumber = ({ value, suffix, inView }: { value: number; suffix: stri
   }, [inView, value]);
 
   return (
-    <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground">
+    <span className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-primary-foreground">
       {count.toLocaleString("fr-FR")}{suffix}
     </span>
   );
@@ -41,9 +41,9 @@ const StatsCounter = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-16 lg:py-20 bg-primary">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <section ref={ref} className="py-12 sm:py-16 lg:py-20 bg-primary">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -53,11 +53,11 @@ const StatsCounter = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-4">
-                <stat.icon size={24} className="text-gold" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gold" />
               </div>
               <AnimatedNumber value={stat.value} suffix={stat.suffix} inView={isInView} />
-              <p className="text-primary-foreground/60 text-sm mt-2">{stat.label}</p>
+              <p className="text-primary-foreground/60 text-xs sm:text-sm mt-1 sm:mt-2">{stat.label}</p>
             </motion.div>
           ))}
         </div>

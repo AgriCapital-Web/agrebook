@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
@@ -30,29 +30,45 @@ const GallerySection = () => {
     setSelectedIndex((selectedIndex + dir + galleryImages.length) % galleryImages.length);
   }, [selectedIndex]);
 
+  // Keyboard navigation
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") navigate(-1);
+      else if (e.key === "ArrowRight") navigate(1);
+      else if (e.key === "Escape") setSelectedIndex(null);
+    };
+    window.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [selectedIndex, navigate]);
+
   return (
     <>
-      <section className="py-20 lg:py-28 bg-section-alt">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-20 lg:py-28 bg-section-alt">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-gold">
               Galerie
             </span>
-            <h2 className="font-display text-3xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground mt-2 sm:mt-3 mb-3 sm:mb-4">
               Art & Culture Africaine
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-lg">
               Célébrons la richesse culturelle et artistique du continent africain.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={img.src}
@@ -60,7 +76,7 @@ const GallerySection = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
-                className="aspect-square rounded-xl overflow-hidden cursor-pointer group relative"
+                className="aspect-square rounded-lg sm:rounded-xl overflow-hidden cursor-pointer group relative"
                 onClick={() => setSelectedIndex(i)}
               >
                 <img
@@ -77,35 +93,35 @@ const GallerySection = () => {
         </div>
       </section>
 
-      {/* Lightbox with navigation */}
+      {/* Lightbox */}
       {selectedIndex !== null && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-2 sm:p-4"
           onClick={() => setSelectedIndex(null)}
         >
           <button
             onClick={() => setSelectedIndex(null)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-white z-10"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 text-white/80 hover:text-white z-10"
             aria-label="Fermer"
           >
-            <X size={32} />
+            <X size={28} className="sm:[&]:w-8 sm:[&]:h-8" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            className="absolute left-1 sm:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-1 sm:p-2"
             aria-label="Précédent"
           >
-            <ChevronLeft size={36} />
+            <ChevronLeft size={28} className="sm:[&]:w-9 sm:[&]:h-9" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); navigate(1); }}
-            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            className="absolute right-1 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-1 sm:p-2"
             aria-label="Suivant"
           >
-            <ChevronRight size={36} />
+            <ChevronRight size={28} className="sm:[&]:w-9 sm:[&]:h-9" />
           </button>
           <img
             src={galleryImages[selectedIndex].src}
@@ -113,7 +129,7 @@ const GallerySection = () => {
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
-          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+          <p className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-xs sm:text-sm">
             {selectedIndex + 1} / {galleryImages.length}
           </p>
         </motion.div>
