@@ -18,7 +18,7 @@ const HeroSection = () => {
     <section
       ref={ref}
       id="accueil"
-      className="relative min-h-[100svh] flex items-end sm:items-center pb-12 sm:pb-0 pt-16 sm:pt-20 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center pt-16 sm:pt-20 overflow-hidden"
     >
       {/* Parallax Background */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
